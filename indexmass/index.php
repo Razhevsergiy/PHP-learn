@@ -6,13 +6,17 @@
     </head>
     <body>
         <?php
+        require_once"/home/serg/PHP/dumper.php";
         if (isset($_REQUEST['doGo'])) {
             //$indexmass = ;
             echo "<p>Ваш индекс массы тела равен ".
-            $height/($mass**2)." .";
+            $_REQUEST["mass"]/(($_REQUEST["height"]/100)**2)." .";
         }
+
+        
+        //dumper($GLOBALS);
         ?>
-        <form action=<?=$_SERVER['SCRIPT_NAME']?> method="post">
+        <form action=<?=$_SERVER['SCRIPT_NAME']?> method="get">
         <label for="height">Введите рост в сантиметрах:
             <input type="text" name="height" value="1" id="height">
         </input></label>
