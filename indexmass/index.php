@@ -6,16 +6,20 @@
     </head>
     <body>
         <?php
-
-use function PHPSTORM_META\type;
-
         if (isset($_REQUEST['doGo'])) {
-            if (type())
-            $indexmass = $height/($mass**2);
+            //$indexmass = ;
+            echo "<p>Ваш индекс массы тела равен ".
+            $height/($mass**2)." .";
         }
         ?>
-        <form action=<?=$_SERVER['SCRIPT_NAME']?> method="get">
-        <input type="text" name="height"></input>
+        <form action=<?=$_SERVER['SCRIPT_NAME']?> method="post">
+        <label for="height">Введите рост в сантиметрах:
+            <input type="text" name="height" value="1" id="height">
+        </input></label>
+        <label for="mass">Введите вес в килограммах:
+            <input type="text" name="mass" value="1" id="mass">
+        </input></label>
+        <input type="submit" value="Рассчитать" name="doGo">
         </form>
     </body>
 </html>
