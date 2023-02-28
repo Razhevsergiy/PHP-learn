@@ -47,6 +47,25 @@ echo "<p>Всё началось $day.$month $year года,
 // ничего из примера в книжке не печатает
 // false работает
 
+// for ($i = 0; $i <= strlen("aaaadssss"); $i++)
+echo "<p>".strpos("aaaadssss",'a');
+
+$str = '<?php
+
+// for ($code = 257; $code < 512; $code++) {
+//     $code1 = $code + 128;
+//     echo "<p>code ($code) = ".chr($code).
+//     "   code ({$code1}) = ".chr($code1);
+// }';
+
+if (strpos($str, "<?") !== false)
+echo "<p>Это PHP программа";
+
+
+
+
+
+
 
 
 
