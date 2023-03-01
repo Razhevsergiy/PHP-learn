@@ -149,10 +149,20 @@ $arr = ['a' => "ф", 's' => "ф", 'd' => "ф", 'f' => "ф",];
 $st = strtr($st, $arr);
 echo "<p>".$st;
 $brr = ['ф' => "s", 'ы' => "y"];
+
+$st = "фф ыы вафы";
 $st = strtr($st, $brr);
 echo "<p>".$st;
 //тут всё работает. Где-то есть ошибка в функции.
 //будем поискать.
+
+$text = "matrix has you";
+$repl = ["matrix" => "you", "you" => "matrix"];
+echo "<p>str_replace():  "
+.str_replace(array_keys($repl), array_values($repl),
+ $text);
+
+echo "<p>strtr()   :".strtr($text, $repl);
 
 
 
