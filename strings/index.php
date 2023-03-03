@@ -26,8 +26,8 @@ echo "<p>".strlen($str);
 $a = [10, 20, 30];
 
 //echo "<p> {$a}";
-$day = $a[0];
-$month = $a[1];
+$day = $a[1];
+$month = $a[0];
 $year = $a[2];
 
 $hour = "11";
@@ -163,6 +163,128 @@ echo "<p>str_replace():  "
  $text);
 
 echo "<p>strtr()   :".strtr($text, $repl);
+
+$a = 10;
+$b = &$a;
+$b = 5;
+
+$a = "https://www.ozon.ru/search/?text=53 Представляется логичным, что сомнение представляет онтологический смысл жизни. Отношение к современности поразительно. ";
+echo "<p>".urlencode($a);
+
+
+echo "<p>".urldecode('https://www.ozon.ru/search/?text=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F+%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0+Linux&from_global=true');
+
+$example = <<<EXAMPLE
+<?php
+    echo &quotHello world!";
+?>
+EXAMPLE;
+
+echo "<p>".$example;
+
+echo "<p>".htmlspecialchars($example, ENT_COMPAT, false);
+
+$str = "HTML characters to check the <b>bold</b> text.&amp";
+echo "<p>". htmlspecialchars(htmlspecialchars(htmlspecialchars($str), false), $double_encode = false);
+
+echo "<p>";
+$trans = array_flip(get_html_translation_table());
+$str = strtr($str, $trans);
+echo $str;
+
+$str = "53\ \ \ \ \ \ \ \ ''''''''''''' Представляется логичным, что сомнение представляет онтологический смысл жизни. Отношение к современности поразительно.";
+echo "<p>".addslashes($str);
+$str = addslashes($str);
+echo "<p>".stripslashes($str);
+$str = "Представляется логичным, что сомнение 
+представляет онтологический смысл жизни. 
+Отношение к современности поразительно.";
+echo "<p>".addslashes($str);
+
+$str = "Folk culture by country, Folk art, 
+Chinese fortune telling, Folk dance, Europeade, 
+Folk festivals, Folklore, Folk games, Gavari, 
+Folk groups, Folk magic, Folk museums, Folk music, 
+Newweling, Folk religion, Traditional music, 
+Traditional songs, Folk wrestling. ";
+
+echo "<p>".strtolower($str);
+echo "<p>".strtoupper($str);
+echo "<p>".ucfirst(strtolower($str));
+//работает только in English
+echo "<p>";
+
+setlocale(LC_ALL, '');
+
+$str = "Представляется логичным, что сомнение 
+представляет онтологический смысл жизни. 
+Отношение к современности поразительно.";
+echo "<p>".strtolower($str);
+echo "<p>".strtoupper($str);
+echo "<p>".ucfirst(strtolower($str));
+//setlocale ничего не меняет
+
+$money1 = 68.75;
+$money2 = 54.35;
+$money = $money1 + $money2;
+echo "<p>$money";
+echo "<p>".sprintf("%h", 10*$money);
+
+
+$isodate = printf("<p>%04d-%02d-%02d", $year, $month, $day);
+
+$str = "Представляется логичным, что сомнение \n
+представляет онтологический смысл жизни. \n
+Отношение к современности поразительно.\n";
+
+$str = "3M \nThinsulate \nPlatinum \ninsulation";
+
+echo "<p>".$str; 
+echo "<p>".NL2BR($str, true); 
+
+function cite($ourText, $maxlen = 60, $prefix = ">") {
+    $st = wordwrap($ourText, $maxlen - strlen($prefix), "<br>\n");
+    //$st = nl2br($st);
+    $st = $prefix.str_replace("\n", "\n$prefix", $st);
+    return $st;
+}
+
+echo "<pre>";
+echo cite("Представляется логичным, что сомнение представляет онтологический смысл жизни. Отношение к современности поразительно.");
+echo "</pre>";
+
+
+$str = "Представляется логичным, что сомнение представляет онтологический смысл жизни. Отношение к современности поразительно.";
+// echo "<pre>";
+echo cite(cite(cite($str)));
+// echo "</pre>";
+
+$st =<<<HTM
+<b>Жирный текст</b>
+<tt>Моноширинный текст</tt>
+<a href = 'http://www.dklad.ru'>Ссылка</a>
+a<x && y>d
+HTM;
+
+echo "<p>Исходный текст: ".$st;
+echo "<hr>После удаления тегов: ".strip_tags($st);
+
+$format = "nvc*";
+$bindata = pack($format, 0x1234, 0x5678, 65, 66);
+echo "<p>".$bindata;
+
+$array = unpack("c2chars/nint", $bindata);
+dumper($array);
+
+echo "<p>".md5($st);
+echo "<p>".crc32($st);
+//echo "<p>".crypt($st, "ad"); не понятно
+//это ключ или что-то другое и как работает алгоритм
+//echo "<p>".crypt($st);
+
+flush();
+
+
 
 
 
