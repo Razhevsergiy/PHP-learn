@@ -3,7 +3,7 @@ function dumper($obj) {
     echo
         "<pre>",
         htmlspecialchars(dumperGet($obj)),
-        "<pre>";
+        "</pre>";
 }
 
 function dumperGet($obj, $leftSp = ""){
