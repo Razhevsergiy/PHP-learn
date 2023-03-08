@@ -205,16 +205,66 @@ $b = 'Some string';
 $A = compact('a', 'b');
 dumper($A);
 
+$a = 'Test';
+$b = 'text';
+$c = 'CCC';
+$d = 'DDD';
+$list = ['b', ['c', 'd']];
+$A = compact('a', $list);
+dumper($A);
 
-
-
-
-
-
-
-
-
-
+$B = ['a' => 'echo'];
+extract($A);
+extract($B, EXTR_SKIP);
+echo "<p>".$a;
 ?>
+
+<table width ="100%">
+    <?php 
+
+    $book = [
+        [
+            'name' => "Serg", 
+            'url' => 'Serg.sr', 
+            "text" => "asdfasdfasdfasdf"]];
+    
+    foreach ($book as $entry) {extract($entry, 
+        EXTR_OVERWRITE)?>
+    <tr>
+        <td>Имя: <?=$name?></td>
+        <td>Адрес: <?=$url?></td>
+    </tr>
+    <tr><td colspan = "3"><?=$text?></td></tr>
+    <tr><td colspan = "3"><hr /></td></tr>
+    <? } ?>
+</table>
+
+<table width = 100%>
+<?php foreach ($book as $entry) {?>
+<?php extract(array_change_key_case($entry, CASE_UPPER))
+?>
+<tr>
+        <td>Имя: <?=$NAME?></td>
+        <td>Адрес: <?=$URL?></td>
+    </tr>
+    <tr><td colspan = "3"><?=$TEXT?></td></tr>
+    <tr><td colspan = "3"><hr /></td></tr>
+
+<?}?>
+</table>
+<table>
+    <?PHP foreach (range(1, 100) as $i) {?>
+        <tr>
+            <td><?= $i ?></td>
+            <td>Это строка номер <?= $i ?></td>
+        </tr>
+    <?}?>
+</table>
+
+
+
+
+
+
 </body>
 </html>
