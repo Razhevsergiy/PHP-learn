@@ -261,10 +261,33 @@ echo "<p>".$a;
     <?}?>
 </table>
 
+<?php
+$native = ["green", "red", "blue",];
+$colors = ["red", "yello", "green", "cyan", "black"];
+$inter = array_intersect($colors, $native);
+dumper($inter);
 
+$diff = array_diff($colors, $native);
+dumper($diff);
+$diff = array_diff($native, $colors);
+dumper($diff);
 
+$union = array_merge($native, $colors);
+$union = array_unique($union);
+dumper($union);
 
+$arr = [
+    "employee" => "Иван Иванов",
+    "phones" => [
+        "916 153 2854", "916 643 8420"
+    ]
+];
+echo "<p>".json_encode($arr);
+echo "<p>".json_encode($arr, JSON_UNESCAPED_UNICODE);
 
-
+$str = json_encode($arr, JSON_UNESCAPED_UNICODE);
+$arr2 = json_decode($str, true, 512);
+dumper($arr2);
+?>
 </body>
 </html>
