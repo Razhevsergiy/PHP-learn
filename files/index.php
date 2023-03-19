@@ -1,4 +1,7 @@
 <?php
+require_once("../dumper.php");
+
+
 $file = "file.txt";
 fclose(fopen($file, "a+b"));
 $f = fopen($file, "r+b") or die("Ну погоди!");
@@ -44,13 +47,48 @@ fclose($f);
 echo "<p>Эта страница была загружена ".$count." раз.";
 ?>
 <?php
-$dir = "d1/d2/d3";
+$dir = "d1";
 
-if (!mkdir($dir, 0777, true)) die("Не удалось создать
-дитекторию");
+mkdir($dir, 0777, true) or die("Не удалось создать
+директорию");
+rmdir("d1");
+echo "<p>".getcwd();
+?>
 
+<?php
+$d = opendir(dirname(__FILE__));
+echo "<p>";
+while (($e = readdir($d))!==false) {echo $e."<br />";}
+rewinddir($d);
+closedir($d);
+?>
 
+<?php
+function printTree($level=1) {
+    $d=@opendir(".");
+    if (!$d) return;
+    while (($e=readdir($d))!==false) {
+        if ($e == '.' || $e == '..') continue;
+        if (!@is_dir($e)) continue;
+        for ($i=0; $i<$level; $i++) echo " ";
+        echo "$e\n";
+        if (!chdir($e)) continue;
+        printTree($level + 1);
+        chdir("..");
+        flush();
+    }
+    closedir($d);
+}
+
+echo "<pre>/\n";
+//chdir("/");
+chdir($_SERVER['DOCUMENT_ROOT']);
+printTree();
+echo "</pre>";
+
+dumper(glob("*.php"));
 
 ?>
+
 
 
