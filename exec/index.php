@@ -30,7 +30,13 @@ file_put_contents($tmp, "What do you think I am? Human?");
 system("commandToExecute < $tmp");
 unlink($tmp);
 
-
+$fp = popen("/usr/sbin/sendmail -t -i", "wb");
+fwrite($fp, "From: our script <script.mail.ru>\n");
+fwrite($fp, "To: mail@mail.ru\n");
+fwrite($fp, "Subject: here is myself\n");
+fwrite($fp, "\n");
+fwrite($fp, file_get_contents(__FILE__));
+pclose($fp);
 
 ?>
 </body>
